@@ -1,0 +1,27 @@
+table{
+    border-collapse: collapse;
+    width: 50%;
+}
+
+table th{
+    color: black;
+    background-color: gray;
+    font-size: 22px;
+    Text-shadow: 1px 1px 2px black;
+}
+
+table tr:nth-child(odd) {
+    color: black;
+    background-color: white;
+    font-size: 18px;
+}
+
+table tr:nth-child(even) {
+    color: white;
+    background-color: darkgray;
+    font-size: 18px;
+}
+
+table, td {
+    border: 1px solid black;
+}

@@ -1,0 +1,337 @@
+body {
+    margin : 0;
+    padding : 0;
+}
+
+
+
+
+nav {
+    display: flex;
+    overflow: hidden;
+}
+
+nav div {
+    padding: 10px 10px;
+    text-align: right;
+    color: #052333;
+    font-family: verdana;
+    background-color: white;
+    cursor: pointer;
+    transition : all 0.4s ease-out;
+}
+
+nav div a{
+    padding: 10px 10px;
+    text-align: right;
+    color: #052333;
+    font-family: verdana;
+    background-color: white;
+    text-decoration: none;
+    cursor: pointer;
+    transition : all 0.4s ease-out;
+}
+
+nav div a:visited{
+    background-color: white;
+    text-decoration: none;
+}
+
+nav div:hover {
+    background-color: white;
+    color: #8495A0;
+}
+
+.mainnav {
+    padding-top: 25px;
+    float: right;
+}
+
+.subnav {
+    background-color: #4A2C56;
+    font-size: 1.5em;
+    text-align: center;
+}
+
+.subnav div {
+    color: white;
+    background-color: #4A2C56;
+}
+
+.subnav div a{
+    color: white;
+    background-color: #4A2C56;
+}
+
+.subnav div:hover {
+    color: white;
+    background-color: #593567;
+}
+
+.subnav div a:hover {
+    color: white;
+    background-color: #593567;
+}
+
+.subnav div a:visited{
+    background-color: #4A2C56;
+    text-decoration: none;
+}
+
+.subnav div a:visited:hover{
+    background-color: #593567;
+    text-decoration: none;
+}
+
+
+
+
+main {
+    max-width: 1200px;
+    margin : 0 auto;
+}
+
+h1 {
+    text-align: center;
+    color: #052333;
+    font-size: 40px;
+    font-family: verdana;
+}
+
+h2 {
+    text-align: center;
+    color: #052333;
+    font-size: 20px;
+    font-family: verdana;
+}
+
+h3 {
+    color: #052333;
+    font-size: 15px;
+    font-family: verdana;
+}
+
+h4 {
+    color: #052333;
+    font-size: 20px;
+    font-family: verdana;
+}
+
+p {
+    color: #052333;
+    font-family: verdana;
+}
+
+a {
+    color: #052333;
+    font-family: verdana;
+    text-decoration: none;
+    transition : all 0.4s ease-out;
+}
+
+a:hover {
+    color: #8495A0;
+    font-family: verdana;
+    text-decoration: none;
+}
+
+label {
+    color: #052333;
+    font-family: verdana;
+    font-size: 12px;
+}
+
+li {
+    color: #052333;
+    font-size: 15px;
+    font-family: verdana;
+}
+
+.info {
+    padding: 5px;
+    font-size: 14px;
+    text-align: center;
+    font-family: verdana;
+}
+
+.detail {
+    color: white;
+    background-color: #4A2C56;
+    font-family: verdana;
+    text-decoration: none;
+}
+
+.detail:hover {
+    color: white;
+    background-color: #593567;
+    font-family: verdana;
+    text-decoration: none;
+    transition : all 0.4s ease-out;
+}
+
+.order {
+    color: white;
+    background-color: #4A2C56;
+    font-family: verdana;
+    text-decoration: none;
+}
+
+.order:hover {
+    color: white;
+    background-color: #593567;
+    font-family: verdana;
+    text-decoration: none;
+    transition : all 0.4s ease-out;
+}
+
+.orderDetails {
+    color: white;
+    background-color: #4A2C56;
+    font-family: verdana;
+    text-decoration: none;
+}
+
+.orderDetails:hover {
+    color: white;
+    background-color: #593567;
+    font-family: verdana;
+    transition : all 0.4s ease-out;
+}
+
+
+
+
+
+.transbox {
+    margin: 30px;
+    background-color: #4A2C56;
+    opacity: 0.6;
+}
+
+.transbox h1{
+    text-align: center;
+    color: white;
+    font-size: 40px;
+    font-family: verdana;
+}
+
+.transbox h2{
+    text-align: center;
+    color: white;
+    font-size: 25px;
+    font-family: verdana;
+}
+
+label {
+    display: inline-block;
+    width: 100px;
+    font-weight: bold;
+}
+
+.errors {
+    color: red;
+}
+
+input {
+    width: 200px;
+}
+
+input[type=submit] {
+    width: auto;
+}
+
+
+td {
+    padding: 0 10px;
+}
+
+td.image img {
+    width: 50px;
+    height: 50px;
+}
+
+tfoot td {
+    text-align: center;
+    font-weight: bold;
+}
+
+tr.odd {
+    background-color: lightgrey;
+}
+
+tbody tr:nth-child(odd) {
+    background-color: lightgrey;
+}
+
+
+#displayProducts {
+    display: grid;
+    grid-template-columns: 15% 85%;
+}
+
+.options {
+    grid-column-start: 1;
+}
+
+.products {
+    grid-column-start: 2;
+}
+
+
+#displayDetails {
+    display: grid;
+    grid-template: 50% 50% / 50% 50%;
+}
+
+
+#container {
+    width: 880px;
+    margin: 0 auto;
+}
+
+#displayLogin {
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+
+.login {
+    grid-column-start: 1;
+}
+
+.new-account {
+    grid-column-start: 2;
+}
+
+
+#list h1 {
+    text-align: center;
+}
+
+#list .products {
+    width: 840px;
+    margin: 20px auto 0;
+}
+
+#list .product {
+    width: 180px;
+    height: 310px;
+    margin: 10px;
+    float: left;
+}
+
+#list .photo img {
+    width: 180px;
+    height: 180px;
+}
+
+#list .links a {
+    display: inline-block;
+    width: 100%;
+    clear: both;
+    text-align: center;
+}
+
+#displayDetails .detailPhoto img {
+    width: 550px;
+    height: 550px;
+}
