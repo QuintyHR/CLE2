@@ -37,7 +37,7 @@ mysqli_close($db);
         <div></div>
         <div></div>
         <div><a href="login.php">Log in</a></div>
-        <div>Winkelmandje</div>
+        <div><a href="shoppingCart.php">Winkelmandje</a></div>
     </nav>
     <nav class="subnav">
         <div>Machines</div>
@@ -49,7 +49,7 @@ mysqli_close($db);
 </header>
 
 <main>
-    <h1><?= $product['name']?></h1>
+    <h1><?= htmlentities($product['name'])?></h1>
 
     <section id="displayDetails">
         <div class="detailPhoto">

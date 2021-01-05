@@ -1,4 +1,43 @@
 <?php
+require_once 'includes/database.php';
+/** @var $db */
+
+session_start();
+
+$login = false;
+
+if (isset($_POST['submit'])) {
+    $email = mysqli_escape_string($db, $_POST['email']);
+    $password = $_POST['password'];
+
+    $errors = [];
+    if ($email == "") {
+        $errors['email'] = 'Het e-mailadres moet nog worden ingevuld';
+    }
+    if ($password == "") {
+        $errors['password'] = 'Het wachtwoord moet nog worden ingevuld';
+    }
+
+    //Get record from DB based on email
+    $query = "SELECT * FROM users WHERE email = '$email'";
+    $result = mysqli_query($db, $query);
+    if (mysqli_num_rows($result) == 1) {
+        $user = mysqli_fetch_assoc($result);
+        if (password_verify($password, $user['password'])) {
+            $login = true;
+        }
+        else {
+            //error onjuiste logingegevens
+            $login = false;
+            $errors['combination'] = 'De combinatie van het e-mailadres en het wachtwoord is niet bij ons bekend';
+        }
+    }
+    else {
+        //error onjuiste inloggegevens
+        $login = false;
+        $errors[] = 'De combinatie van het e-mailadres en het wachtwoord is niet bij ons bekend';
+    }
+}
 
 ?>
 
@@ -12,6 +51,7 @@
     <title>Login - Van Huissteden</title>
     <link rel="stylesheet" type="text/css" href="css/style.css"/>
 </head>
+
 <body>
 <header>
     <a href="index.html"><img src="images/logo_header.png"></a>
@@ -23,7 +63,7 @@
         <div></div>
         <div></div>
         <div><a href="login.php">Log in</a></div>
-        <div>Winkelmandje</div>
+        <div><a href="shoppingCart.php">Winkelmandje</a></div>
     </nav>
     <nav class="subnav">
         <div>Machines</div>
@@ -37,22 +77,29 @@
 <main>
     <h1>Inloggen</h1>
 
+    <?php if ($login && $user['admin'] == 1) {
+        header("Location: admin.php");
+        exit();
+
+    } elseif ($login && $user['admin'] == 0) {?>
+        <p>U bent succesvol ingelogd</p>
+    <?php } else {?>
     <section id="displayLogin">
         <div class="login">
             <h4>Inloggen bestaande klanten</h4>
 
             <form action= "" method="post">
+                <span class="errors"><?= isset($errors['combination']) ? $errors['combination'] : '' ?></span>
                 <span class="errors"><?= isset($errors['email']) ? $errors['email'] : '' ?></span>
                 <div class="data-field">
                     <label for="email">E-mailadres</label>
                     <input id="email" type="text" name="email"
-                           value="<?= isset($email) ? $email : '' ?>"/>
+                           value="<?= htmlentities(isset($email) ? $email : '') ?>"/>
                 </div>
                 <span class="errors"><?= isset($errors['password']) ? $errors['password'] : '' ?></span>
                 <div class="data-field">
                     <label for="password">Wachtwoord</label>
-                    <input id="password" type="text" name="password"
-                           value="<?= isset($password) ? $password : '' ?>"/>
+                    <input id="password" type="password" name="password"/>
                 </div>
 
                 <br>
@@ -71,6 +118,7 @@
             <a href="new-account.php">Maak nieuw account aan</a>
         </div>
     </section>
+    <?php } ?>
 
     <br>
 

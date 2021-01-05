@@ -5,14 +5,22 @@ require_once 'includes/database.php';
 //Check if Post isset, else do nothing
 if (isset($_POST['submit'])) {
     //Postback with the data showed to the user, first retrieve data from 'Super global'
-    $picture_name = $_POST['picture_name'];
-    $name = $_POST['name'];
-    $price_from = $_POST['price_from'];
-    $price_now = $_POST['price_now'];
-    $description = $_POST['description'];
-    $stock = $_POST['stock'];
+    $picture_name = mysqli_escape_string($db, $_POST['picture_name']);
+    $name = mysqli_escape_string($db, $_POST['name']);
+    $price_from = mysqli_escape_string($db, $_POST['price_from']);
+    $price_now = mysqli_escape_string($db, $_POST['price_now']);
+    $description = mysqli_escape_string($db, $_POST['description']);
+    $stock = mysqli_escape_string($db, $_POST['stock']);
 
     //Secure the data above
+    $product = [
+        'name' => $name,
+        'price_from' => $price_from,
+        'price_now' => $price_now,
+        'description' => $description,
+        'picture_name' => $picture_name,
+        'stock' => $stock
+    ];
 
     //Check if data is valid & generate error if not so
     $errors = [];

@@ -15,6 +15,15 @@ if (isset($_POST['submit'])) {
     $productId = $_POST['id'];
 
     //Secure the data above
+    $product = [
+        'name' => $name,
+        'price_from' => $price_from,
+        'price_now' => $price_now,
+        'description' => $description,
+        'picture_name' => $picture_name,
+        'stock' => $stock,
+        'productId' => $productId
+    ];
 
     //Check if data is valid & generate error if not so
     $errors = [];
@@ -38,6 +47,11 @@ if (isset($_POST['submit'])) {
     }
 
     if(empty($errors)) {
+        if($_FILES['picture_name']['error'] != 4) {
+            deleteImageFile($picture_name);
+            $picture_name = addImageFile($_FILES['picture_name']);
+        }
+
         // Now this data can be stored in de database
         $query = "UPDATE garen SET name = '$name', 
                                     price_from = '$price_from',
@@ -56,7 +70,6 @@ if (isset($_POST['submit'])) {
             $errors['db'] = mysqli_error($db);
         }
     }
-
 } elseif (isset($_GET['id'])) {
     //Retrieve the GET parameter from the 'Super global'
     $productId = $_GET['id'];

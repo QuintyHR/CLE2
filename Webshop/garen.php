@@ -36,7 +36,7 @@ mysqli_close($db);
         <div></div>
         <div></div>
         <div><a href="login.php">Log in</a></div>
-        <div>Winkelmandje</div>
+        <div><a href="shoppingCart.php">Winkelmandje</a></div>
     </nav>
     <nav class="subnav">
         <div>Machines</div>
