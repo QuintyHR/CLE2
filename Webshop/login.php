@@ -9,6 +9,7 @@ $login = false;
 if (isset($_POST['submit'])) {
     $email = mysqli_escape_string($db, $_POST['email']);
     $password = $_POST['password'];
+    $userId = mysqli_escape_string($db, $_POST['email']);
 
     $errors = [];
     if ($email == "") {
@@ -39,6 +40,8 @@ if (isset($_POST['submit'])) {
     }
 }
 
+$_SESSION['login'] = $login;
+
 ?>
 
 <!doctype html>
@@ -62,7 +65,13 @@ if (isset($_POST['submit'])) {
         <div>Contact</div>
         <div></div>
         <div></div>
-        <div><a href="login.php">Log in</a></div>
+        <div>
+            <?php if($login) {?>
+                <a href="logout.php">Log uit</a>
+            <?php } else {?>
+                <a href="login.php">Log in</a>
+            <?php } ?>
+        </div>
         <div><a href="shoppingCart.php">Winkelmandje</a></div>
     </nav>
     <nav class="subnav">
@@ -78,11 +87,13 @@ if (isset($_POST['submit'])) {
     <h1>Inloggen</h1>
 
     <?php if ($login && $user['admin'] == 1) {
+        $_SESSION['admin'] = $user['admin'];
+        $_SESSION['userId'] = $_POST[$user['userId']];
         header("Location: admin.php");
         exit();
-
-    } elseif ($login && $user['admin'] == 0) {?>
-        <p>U bent succesvol ingelogd</p>
+    } elseif ($login && $user['admin'] == 0) {
+        $_SESSION['user_id'] = $user['id'];?>
+        <p>U bent succesvol ingelogd!</p>
     <?php } else {?>
     <section id="displayLogin">
         <div class="login">

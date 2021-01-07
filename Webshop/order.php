@@ -40,7 +40,13 @@ if(isset($_POST['submit'])) {
         <div>Contact</div>
         <div></div>
         <div></div>
-        <div><a href="login.php">Log in</a></div>
+        <div>
+            <?php if($login) {?>
+                <a href="logout.php">Log uit</a>
+            <?php } else {?>
+                <a href="login.php">Log in</a>
+            <?php } ?>
+        </div>
         <div>Winkelmandje</div>
     </nav>
     <nav class="subnav">

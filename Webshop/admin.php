@@ -1,3 +1,15 @@
+<?php
+session_start();
+
+$login = $_SESSION['login'];
+$admin = $_SESSION['admin'];
+
+if($admin != 1 || $login == false) {
+    header("Location: login.php");
+    exit();
+}
+?>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -12,10 +24,7 @@
 <body>
 <header>
     <nav>
-        <div><a href="index.html">Home</a></div>
-        <div>Over ons</div>
-        <div>Workshops</div>
-        <div>Contact</div>
+        <div><a href="logout.php">Log uit</a></div>
     </nav>
 </header>
 

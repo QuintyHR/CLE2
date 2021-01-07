@@ -3,6 +3,16 @@
 require_once "includes/database.php";
 /** @var $db */
 
+session_start();
+
+$login = $_SESSION['login'];
+$admin = $_SESSION['admin'];
+
+if($admin != 1 || $login == false) {
+    header("Location: login.php");
+    exit();
+}
+
 //TODO: Handle POST data & store in DB
 if (isset($_POST['submit'])) {
     //Postback with the data showed to the user, first retrieve data from 'Super global'
@@ -154,7 +164,7 @@ mysqli_close($db);
         </div>
 
         <div class="data-submit">
-            <input type="submit" name="submit" value="Save"/>
+            <input type="submit" name="submit" value="Bewerk"/>
         </div>
     </form>
     <br>

@@ -2,6 +2,16 @@
 require_once 'includes/database.php';
 /** @var $db */
 
+session_start();
+
+$login = $_SESSION['login'];
+$admin = $_SESSION['admin'];
+
+if($admin != 1 || $login == false) {
+    header("Location: login.php");
+    exit();
+}
+
 $productId = $_GET['id'];
 
 $query = "DELETE FROM garen WHERE id = '$productId'";

@@ -2,6 +2,16 @@
 require_once 'includes/database.php';
 /** @var $db */
 
+session_start();
+
+$login = $_SESSION['login'];
+$admin = $_SESSION['admin'];
+
+if($admin != 1 || $login == false) {
+    header("Location: login.php");
+    exit();
+}
+
 //Check if Post isset, else do nothing
 if (isset($_POST['submit'])) {
     //Postback with the data showed to the user, first retrieve data from 'Super global'
@@ -65,7 +75,7 @@ mysqli_close($db);
 <!doctype html>
 <html lang="en">
 <head>
-    <title>Music Collection Create</title>
+    <title>Product toevoegen - Van Huissteden</title>
     <meta charset="utf-8"/>
     <link rel="stylesheet" type="text/css" href="css/style.css"/>
 </head>

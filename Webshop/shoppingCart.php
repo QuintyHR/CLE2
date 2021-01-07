@@ -1,5 +1,18 @@
 <?php
+require_once 'includes/database.php';
+/** @var $db */
+
 session_start();
+
+if(isset($_SESSION['login'])) {
+    $login = $_SESSION['login'];
+}
+else {
+    $login = false;
+}
+
+$product['id'] = $id;
+$product['quantity'] = $productQuantity;
 
 $products = $_SESSION['products'];
 
@@ -38,7 +51,13 @@ $shoppingCartItem = $_COOKIE['shoppingCart'];
         <div>Contact</div>
         <div></div>
         <div></div>
-        <div><a href="login.php">Log in</a></div>
+        <div>
+            <?php if($login) {?>
+                <a href="logout.php">Log uit</a>
+            <?php } else {?>
+                <a href="login.php">Log in</a>
+            <?php } ?>
+        </div>
         <div><a href="shoppingCart.php">Winkelmandje</a></div>
     </nav>
     <nav class="subnav">
@@ -53,6 +72,35 @@ $shoppingCartItem = $_COOKIE['shoppingCart'];
 <main>
     <h1>Winkelmandje</h1>
 
+    <table>
+        <thead>
+        <tr>
+            <th></th>
+            <th>Product</th>
+            <th>Prijs p.s.</th>
+            <th>Aantal</th>
+            <th>Prijs</th>
+        </tr>
+        </thead>
+
+        <tfoot>
+        <tr>
+            <td colspan="8">&copy; Huissteden 2020</td>
+        </tr>
+        </tfoot>
+
+        <tbody>
+        <?php foreach ($products as $product) { ?>
+            <tr>
+                <td class="image"><img src="images/<?= $product['picture_name'] ?>" alt=""/></td>
+                <td><?= $product['name'] ?></td>
+                <td><?= $product['price_now'] ?></td>
+                <td><?= $product['productQuantity'] ?></td>
+                <td><?= $product['price_now'] * $productQuantity?></td>
+            </tr>
+        <?php } ?>
+        </tbody>
+    </table>
 
     <a href="order.php">Bestellen</a>
 </main>

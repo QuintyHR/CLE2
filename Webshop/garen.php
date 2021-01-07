@@ -3,6 +3,15 @@ require_once 'includes/database.php';
 /** @var array $products */
 /** @var $db */
 
+session_start();
+
+if(isset($_SESSION['login'])) {
+    $login = $_SESSION['login'];
+}
+else {
+    $login = false;
+}
+
 $query = "SELECT * FROM garen";
 $result = mysqli_query($db, $query);
 
@@ -35,7 +44,13 @@ mysqli_close($db);
         <div>Contact</div>
         <div></div>
         <div></div>
-        <div><a href="login.php">Log in</a></div>
+        <div>
+            <?php if($login) {?>
+                <a href="logout.php">Log uit</a>
+            <?php } else {?>
+                <a href="login.php">Log in</a>
+            <?php } ?>
+        </div>
         <div><a href="shoppingCart.php">Winkelmandje</a></div>
     </nav>
     <nav class="subnav">

@@ -3,6 +3,16 @@ require_once 'includes/database.php';
 /** @var array $products */
 /** @var $db */
 
+session_start();
+
+$login = $_SESSION['login'];
+$admin = $_SESSION['admin'];
+
+if($admin != 1 || $login == false) {
+    header("Location: login.php");
+    exit();
+}
+
 mysqli_close($db);
 ?>
 

@@ -2,6 +2,15 @@
 require_once 'includes/database.php';
 /** @var $db */
 
+session_start();
+
+if(isset($_SESSION['login'])) {
+    $login = $_SESSION['login'];
+}
+else {
+    $login = false;
+}
+
 $index = $_GET['id'];
 
 $query = "SELECT * FROM garen WHERE id = '$index'"
@@ -36,7 +45,13 @@ mysqli_close($db);
         <div>Contact</div>
         <div></div>
         <div></div>
-        <div><a href="login.php">Log in</a></div>
+        <div>
+            <?php if($login) {?>
+                <a href="logout.php">Log uit</a>
+            <?php } else {?>
+                <a href="login.php">Log in</a>
+            <?php } ?>
+        </div>
         <div><a href="shoppingCart.php">Winkelmandje</a></div>
     </nav>
     <nav class="subnav">

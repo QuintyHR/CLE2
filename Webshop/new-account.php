@@ -111,6 +111,9 @@ mysqli_close($db);
 <main>
     <h1>Maak een nieuw account aan</h1>
 
+    <?php if(isset($success)) { ?>
+        <p>Uw account is aangemaakt! Ga terug om in te kunnen loggen.</p>
+    <?php } else { ?>
     <form action= "" method="post">
         <h4>Persoonsgegevens</h4>
         <span class="errors"><?= isset($errors['firstname']) ? $errors['firstname'] : '' ?></span>
@@ -177,6 +180,7 @@ mysqli_close($db);
             <input type="submit" name="submit" value="Maak account"/>
         </div>
     </form>
+    <?php } ?>
 
     <br>
 
