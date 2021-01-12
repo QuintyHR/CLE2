@@ -17,7 +17,7 @@ $surname = $_POST['surname'];
 <body>
 <header>
     <nav>
-        <div><a href="index.html">Home</a></div>
+        <div><a href="index.php">Home</a></div>
         <div><a href="garen.php">Producten</a></div>
         <div>Over ons</div>
         <div>Workshops</div>

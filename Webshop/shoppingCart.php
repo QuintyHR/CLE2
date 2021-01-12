@@ -11,23 +11,26 @@ else {
     $login = false;
 }
 
-$product['id'] = $id;
-$product['quantity'] = $productQuantity;
+//$shoppingCartItems = explode(",", $_COOKIE['shoppingCart']);
+if(isset($_COOKIE['shoppingCart'])) {
+    $shoppingCartItems = $_COOKIE['shoppingCart'];
 
-$products = $_SESSION['products'];
+    $query = "SELECT * FROM garen WHERE id IN ($shoppingCartItems)"
+    or die('Error '.mysqli_error($db).' with query '.$query);
 
-unset($_SESSION['products']);
+    $result = mysqli_query($db, $query)
+    or die('Error in query: '.$query);
 
-session_unset();
-session_destroy();
+    $products = [];
+    while($row = mysqli_fetch_assoc($result)) {
+        $products[] = $row;
+    }
+}
 
+$priceTotal = 0;
+$shippingCost = 4.95;
 
-$product = 'ariadna2800';
-
-setcookie('shoppingCart', $product, time() + 3600);
-
-$shoppingCartItem = $_COOKIE['shoppingCart'];
-
+mysqli_close($db);
 ?>
 
 <!doctype html>
@@ -43,9 +46,9 @@ $shoppingCartItem = $_COOKIE['shoppingCart'];
 
 <body>
 <header>
-    <a href="index.html"><img src="images/logo_header.png"></a>
+    <a href="index.php"><img src="images/logo_header.png"></a>
     <nav class="mainnav">
-        <div><a href="index.html">Home</a></div>
+        <div><a href="index.php">Home</a></div>
         <div>Over ons</div>
         <div>Workshops</div>
         <div>Contact</div>
@@ -72,37 +75,65 @@ $shoppingCartItem = $_COOKIE['shoppingCart'];
 <main>
     <h1>Winkelmandje</h1>
 
-    <table>
-        <thead>
-        <tr>
-            <th></th>
-            <th>Product</th>
-            <th>Prijs p.s.</th>
-            <th>Aantal</th>
-            <th>Prijs</th>
-        </tr>
-        </thead>
+    <br>
 
-        <tfoot>
-        <tr>
-            <td colspan="8">&copy; Huissteden 2020</td>
-        </tr>
-        </tfoot>
+    <?php if(isset($products)) { ?>
+    <section id="displayShoppingCart">
+        <div class="shoppingList">
+            <table class="shoppingList">
+                <thead class="shoppingList">
+                <tr>
+                    <th></th>
+                    <th>Product</th>
+                    <th>Prijs p.s.</th>
+                    <th>Aantal</th>
+                    <th>Prijs</th>
+                    <th></th>
+                </tr>
+                </thead>
 
-        <tbody>
-        <?php foreach ($products as $product) { ?>
-            <tr>
-                <td class="image"><img src="images/<?= $product['picture_name'] ?>" alt=""/></td>
-                <td><?= $product['name'] ?></td>
-                <td><?= $product['price_now'] ?></td>
-                <td><?= $product['productQuantity'] ?></td>
-                <td><?= $product['price_now'] * $productQuantity?></td>
-            </tr>
-        <?php } ?>
-        </tbody>
-    </table>
+                <tbody class="shoppingList">
+                <?php foreach ($products as $product) { ?>
+                    <tr>
+                        <td class="imageShopping"><img src="images/<?= $product['picture_name'] ?>" alt=""/></td>
+                        <td><?= $product['name'] ?></td>
+                        <td>€ <?= $product['price_now'] ?></td>
+                        <td></td>
+                        <td>€ </td>
+                        <td>Verwijder</td>
+                    </tr>
+                <?php
+                    $priceTotal += $product['price_now'];
+                    $priceTotal = number_format($priceTotal, "2");
+                    }
+                ?>
+                </tbody>
+            </table>
+        </div>
 
-    <a href="order.php">Bestellen</a>
+        <div class="orderList">
+            <p>Subtotaal: € <?= $priceTotal ?></p>
+            <p>Verzendkosten: € <?= $shippingCost ?></p>
+            <?php
+                $priceInc = $priceTotal + $shippingCost;
+                $priceInc = number_format($priceInc, "2");
+            ?>
+            <p>Totaal: € <?= $priceInc?></p>
+            <div class="links">
+                <a class="orderDetails" href="order.php">Plaats bestelling</a>
+            </div>
+        </div>
+    </section>
+
+    <?php } else { ?>
+    <section>
+        <p>Uw winkelmandje is nog leeg</p>
+        <br>
+        <div>
+            <a href="index.php" class="box">Verder met winkelen</a>
+        </div>
+    </section>
+    <?php } ?>
 </main>
 
 <footer>

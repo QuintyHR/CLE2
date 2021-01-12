@@ -37,9 +37,9 @@ mysqli_close($db);
 
 <body>
 <header>
-    <a href="index.html"><img src="images/logo_header.png"></a>
+    <a href="index.php"><img src="images/logo_header.png"></a>
     <nav class="mainnav">
-        <div><a href="index.html">Home</a></div>
+        <div><a href="index.php">Home</a></div>
         <div>Over ons</div>
         <div>Workshops</div>
         <div>Contact</div>
@@ -75,11 +75,11 @@ mysqli_close($db);
             <h2><?= $product['name']?></h2>
             <ul>
                 <li>Beschrijving: <?= $product['description'] ?></li>
-                <li>Prijs: <?= $product['price_now'] ?></li>
+                <li>Prijs: € <?= $product['price_now'] ?></li>
                 <li>Voorraad: <?= $product['stock'] ?></li>
             </ul>
             <div class="links">
-                <a class="orderDetails" href="order.php?id=<?= $product['id'] ?>">Bestel</a>
+                <a class="orderDetails" href="cookie.php?id=<?= $product['id'] ?>">Bestel</a>
             </div>
             <br>
             <a href="garen.php">Ga terug</a>

@@ -1,3 +1,8 @@
+@font-face {
+    font-family: PatuaOne;
+    src: url("fonts/PatuaOne-Regular.ttf") format("truetype");
+}
+
 body {
     margin : 0;
     padding : 0;
@@ -94,7 +99,7 @@ h1 {
     text-align: center;
     color: #052333;
     font-size: 40px;
-    font-family: verdana;
+    font-family: Verdana;
 }
 
 h2 {
@@ -134,11 +139,15 @@ a:hover {
     text-decoration: none;
 }
 
+
+
 label {
     color: #052333;
     font-family: verdana;
     font-size: 12px;
 }
+
+
 
 li {
     color: #052333;
@@ -221,15 +230,21 @@ li {
     font-family: verdana;
 }
 
+
+
 label {
     display: inline-block;
     width: 100px;
     font-weight: bold;
 }
 
+
+
 .errors {
     color: red;
 }
+
+
 
 input {
     width: 200px;
@@ -238,6 +253,7 @@ input {
 input[type=submit] {
     width: auto;
 }
+
 
 
 td {
@@ -261,6 +277,37 @@ tr.odd {
 tbody tr:nth-child(odd) {
     background-color: lightgrey;
 }
+
+
+
+table.shoppingList {
+    border-collapse: collapse;
+    width: 95%;
+}
+
+thead.shoppingList th{
+    color: white;
+    font-family: Verdana;
+    font-size: 18px;
+    background-color: #4A2C56;
+    border-collapse: collapse;
+}
+
+tbody.shoppingList td{
+    background-color: white;
+    font-family: Verdana;
+    font-size: 15px;
+    text-align: center;
+    border: none;
+}
+
+td.imageShopping img{
+    height: 100px;
+    width: 100px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
 
 
 #displayProducts {
@@ -287,6 +334,8 @@ tbody tr:nth-child(odd) {
     width: 880px;
     margin: 0 auto;
 }
+
+
 
 #displayLogin {
     display: grid;
@@ -333,4 +382,19 @@ tbody tr:nth-child(odd) {
 #displayDetails .detailPhoto img {
     width: 550px;
     height: 550px;
+}
+
+
+
+#displayShoppingCart {
+    display: grid;
+    grid-template-columns: 75% 25%;
+}
+
+.shoppingList {
+    grid-column-start: 1;
+}
+
+.orderList {
+    grid-column-start: 2;
 }

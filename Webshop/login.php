@@ -9,7 +9,6 @@ $login = false;
 if (isset($_POST['submit'])) {
     $email = mysqli_escape_string($db, $_POST['email']);
     $password = $_POST['password'];
-    $userId = mysqli_escape_string($db, $_POST['email']);
 
     $errors = [];
     if ($email == "") {
@@ -26,22 +25,22 @@ if (isset($_POST['submit'])) {
         $user = mysqli_fetch_assoc($result);
         if (password_verify($password, $user['password'])) {
             $login = true;
+            $_SESSION['userId'] = $user['id'];
         }
         else {
             //error onjuiste logingegevens
             $login = false;
-            $errors['combination'] = 'De combinatie van het e-mailadres en het wachtwoord is niet bij ons bekend';
+            $errors['combination'] = 'Uw login gegevens zijn onjuist';
         }
     }
     else {
         //error onjuiste inloggegevens
         $login = false;
-        $errors[] = 'De combinatie van het e-mailadres en het wachtwoord is niet bij ons bekend';
+        $errors[] = 'Uw login gegevens zijn onjuist';
     }
 }
 
 $_SESSION['login'] = $login;
-
 ?>
 
 <!doctype html>
@@ -57,9 +56,9 @@ $_SESSION['login'] = $login;
 
 <body>
 <header>
-    <a href="index.html"><img src="images/logo_header.png"></a>
+    <a href="index.php"><img src="images/logo_header.png"></a>
     <nav class="mainnav">
-        <div><a href="index.html">Home</a></div>
+        <div><a href="index.php">Home</a></div>
         <div>Over ons</div>
         <div>Workshops</div>
         <div>Contact</div>
@@ -133,7 +132,7 @@ $_SESSION['login'] = $login;
 
     <br>
 
-    <a href="index.html">Ga terug</a>
+    <a href="index.php">Ga terug</a>
 </main>
 
 <footer>

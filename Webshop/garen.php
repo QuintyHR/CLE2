@@ -12,6 +12,10 @@ else {
     $login = false;
 }
 
+if(isset($shoppingCart)) {
+    $shoppingCart = [];
+}
+
 $query = "SELECT * FROM garen";
 $result = mysqli_query($db, $query);
 
@@ -36,9 +40,9 @@ mysqli_close($db);
 
 <body id="list">
 <header>
-    <a href="index.html"><img src="images/logo_header.png"></a>
+    <a href="index.php"><img src="images/logo_header.png"></a>
     <nav class="mainnav">
-        <div><a href="index.html">Home</a></div>
+        <div><a href="index.php">Home</a></div>
         <div>Over ons</div>
         <div>Workshops</div>
         <div>Contact</div>
@@ -111,11 +115,11 @@ mysqli_close($db);
                         <div class="info">
                             <a href="details.php?id=<?= $product['id'] ?>"><?= $product['name'] ?></a>
                             <br>
-                            <?= $product['price_from'] ?><strong><?= $product['price_now'] ?></strong>
+                            <?= $product['price_from'] ?><strong>€ <?= $product['price_now'] ?></strong>
                         </div>
                         <div class="links">
                             <a class="detail" href="details.php?id=<?= $product['id'] ?>">Meer</a>
-                            <a class="order" href="order.php?id=<?= $product['id'] ?>">Bestel</a>
+                            <a class="order" href="cookie.php?id=<?= $product['id'] ?>">Bestel</a>
                         </div>
                     </div>
                 <?php } ?>

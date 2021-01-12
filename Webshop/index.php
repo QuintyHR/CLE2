@@ -1,3 +1,14 @@
+<?php
+session_start();
+
+if(isset($_SESSION['login'])) {
+    $login = $_SESSION['login'];
+}
+else {
+    $login = false;
+}
+?>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -11,16 +22,22 @@
 
 <body>
 <header>
-    <a href="index.html"><img src="images/logo_header.png"></a>
+    <a href="index.php"><img src="images/logo_header.png"></a>
     <nav class="mainnav">
-        <div><a href="index.html">Home</a></div>
+        <div><a href="index.php">Home</a></div>
         <div>Over ons</div>
         <div>Workshops</div>
         <div>Contact</div>
         <div></div>
         <div></div>
-        <div><a href="login.php">Log in</a></div>
-        <div>Winkelmandje</div>
+        <div>
+            <?php if($login) {?>
+                <a href="logout.php">Log uit</a>
+            <?php } else {?>
+                <a href="login.php">Log in</a>
+            <?php } ?>
+        </div>
+        <div><a href="shoppingCart.php">Winkelmandje</a></div>
     </nav>
     <nav class="subnav">
         <div>Machines</div>

@@ -73,7 +73,7 @@ if (isset($_POST['submit'])) {
         $result = mysqli_query($db, $query);
 
         if ($result) {
-            header('Location: index.html');
+            header('Location: index.php');
             exit();
         }
         else {

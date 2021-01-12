@@ -1,22 +1,14 @@
 <?php
-if(isset($_POST['submit'])) {
-    $firstname = $_POST['firstname'];
-    $surname = $_POST['surname'];
+session_start();
 
-    $errors = [];
-    if($firstname == '') {
-        $errors['firstname'] = 'Het veldnaam met Voornaam mag niet leeg zijn.';
-    }
-    if($surname == '') {
-        $errors['surname'] = 'Het veldnaam met Achternaam mag niet leeg zijn.';
-    }
+$login = $_SESSION['login'];
 
-    if(empty($errors))
-    {
-        // Now this data can be stored in de database
-
-    }
+if($login == false) {
+    header("Location: login.php");
+    exit();
 }
+
+setcookie('shoppingCart', "", time() - 3600);
 ?>
 
 <!doctype html>
@@ -32,9 +24,9 @@ if(isset($_POST['submit'])) {
 
 <body>
 <header>
-    <a href="index.html"><img src="images/logo_header.png"></a>
+    <a href="index.php"><img src="images/logo_header.png"></a>
     <nav class="mainnav">
-        <div><a href="index.html">Home</a></div>
+        <div><a href="index.php">Home</a></div>
         <div>Over ons</div>
         <div>Workshops</div>
         <div>Contact</div>
@@ -47,7 +39,7 @@ if(isset($_POST['submit'])) {
                 <a href="login.php">Log in</a>
             <?php } ?>
         </div>
-        <div>Winkelmandje</div>
+        <div><a href="shoppingCart.php">Winkelmandje</a></div>
     </nav>
     <nav class="subnav">
         <div>Machines</div>
@@ -60,35 +52,14 @@ if(isset($_POST['submit'])) {
 
 <main>
     <section>
-        <h1>Bestellen</h1>
-            <form action= "" method="post">
-
-            <span class="errors"><?= isset($errors['firstname']) ? $errors['firstname'] : '' ?></span>
-            <div class="data-field">
-                <label for="firstname">Voornaam</label>
-                <input id="firstname" type="text" name="firstname"
-                       value="<?= isset($firstname) ? $firstname : '' ?>"/>
-            </div>
-            <span class="errors"><?= isset($errors['surname']) ? $errors['surname'] : '' ?></span>
-            <div class="data-field">
-                <label for="surname">Achternaam</label>
-                <input id="surname" type="text" name="surname"
-                       value="<?= isset($surname) ? $surname : '' ?>"/>
-            </div>
-
-            <br>
-
-            <div class="data-submit">
-                <input type="submit" name="submit" value="Bestellen"/>
-            </div>
-        </form>
+        <h1>Bedankt voor uw bestelling!</h1>
     </section>
 
     <br>
     <br>
 
     <div>
-        <a href="index.html" class="box">Verder met winkelen</a>
+        <a href="index.php" class="box">Verder met winkelen</a>
     </div>
 </main>
 </body>
