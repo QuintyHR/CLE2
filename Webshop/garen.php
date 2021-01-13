@@ -119,7 +119,7 @@ mysqli_close($db);
                         </div>
                         <div class="links">
                             <a class="detail" href="details.php?id=<?= $product['id'] ?>">Meer</a>
-                            <a class="order" href="cookie.php?id=<?= $product['id'] ?>">Bestel</a>
+                            <a class="order" href="cookie.php?id=<?= $product['id'] ?>&quantity=1">Bestel</a>
                         </div>
                     </div>
                 <?php } ?>

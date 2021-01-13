@@ -11,19 +11,27 @@ else {
     $login = false;
 }
 
-//$shoppingCartItems = explode(",", $_COOKIE['shoppingCart']);
 if(isset($_COOKIE['shoppingCart'])) {
-    $shoppingCartItems = $_COOKIE['shoppingCart'];
-
-    $query = "SELECT * FROM garen WHERE id IN ($shoppingCartItems)"
-    or die('Error '.mysqli_error($db).' with query '.$query);
-
-    $result = mysqli_query($db, $query)
-    or die('Error in query: '.$query);
+    $shoppingCartItems = unserialize($_COOKIE['shoppingCart']);
 
     $products = [];
-    while($row = mysqli_fetch_assoc($result)) {
-        $products[] = $row;
+    $quantity = [];
+    $start = 0;
+    $number = 0;
+
+    foreach($shoppingCartItems as $shoppingCartItem) {
+        $itemId = $shoppingCartItems[$start]['id'];
+        $itemQuantity = $shoppingCartItems[$start]['quantity'];
+
+        $query = "SELECT * FROM garen WHERE id = '$itemId'"
+        or die('Error '.mysqli_error($db).' with query '.$query);
+
+        $result = mysqli_query($db, $query)
+        or die('Error in query: '.$query);
+
+        $products[] = mysqli_fetch_assoc($result);
+        $quantity[] = $itemQuantity;
+        $start += 1;
     }
 }
 
@@ -40,7 +48,7 @@ mysqli_close($db);
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Winkelmadje - Van Huissteden</title>
+    <title>Winkelmandje - Van Huissteden</title>
     <link rel="stylesheet" type="text/css" href="css/style.css"/>
 </head>
 
@@ -93,25 +101,34 @@ mysqli_close($db);
                 </thead>
 
                 <tbody class="shoppingList">
-                <?php foreach ($products as $product) { ?>
-                    <tr>
-                        <td class="imageShopping"><img src="images/<?= $product['picture_name'] ?>" alt=""/></td>
-                        <td><?= $product['name'] ?></td>
-                        <td>€ <?= $product['price_now'] ?></td>
-                        <td></td>
-                        <td>€ </td>
-                        <td>Verwijder</td>
-                    </tr>
-                <?php
-                    $priceTotal += $product['price_now'];
-                    $priceTotal = number_format($priceTotal, "2");
-                    }
-                ?>
+                    <?php foreach ($products as $product) { ?>
+                        <tr>
+                            <td class="imageShopping"><img src="images/<?= $product['picture_name'] ?>" alt=""/></td>
+                            <td><?= $product['name'] ?></td>
+                            <td>€ <?= number_format($product['price_now'], "2")?></td>
+                            <td class="inputQuantity">
+                                <div class="inputQuantity">
+                                    <input id="quantity" type="number" name="quantity"
+                                           value="<?= $quantity[$number] ?>"/>
+                                </div>
+                            </td>
+                            <td>€ <?= number_format($product['price_now'] *= $quantity[$number], "2")?></td>
+                            <td class="trashCan"><img src="icons/trashCan.png"></td>
+                        </tr>
+                    <?php
+                        $number += 1;
+                        $priceTotal += $product['price_now'];
+                        $priceTotal = number_format($priceTotal, "2");
+                        }
+                    ?>
                 </tbody>
             </table>
         </div>
 
         <div class="orderList">
+            <div class="orderListSummary">
+                <h2>Overzicht</h2>
+            </div>
             <p>Subtotaal: € <?= $priceTotal ?></p>
             <p>Verzendkosten: € <?= $shippingCost ?></p>
             <?php
@@ -119,8 +136,9 @@ mysqli_close($db);
                 $priceInc = number_format($priceInc, "2");
             ?>
             <p>Totaal: € <?= $priceInc?></p>
-            <div class="links">
-                <a class="orderDetails" href="order.php">Plaats bestelling</a>
+            <br>
+            <div class="orderCartAlign">
+                <a class="orderCart" href="order.php">Plaats bestelling</a>
             </div>
         </div>
     </section>

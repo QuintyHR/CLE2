@@ -206,6 +206,50 @@ li {
     transition : all 0.4s ease-out;
 }
 
+.orderCartAlign {
+    text-align: center;
+}
+
+.orderCartAlign input {
+    width: 40px;
+    height: 40px;
+    font-size: 15px;
+}
+
+.orderCart {
+    padding-bottom: 10px;
+    padding-top: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    color: white;
+    background-color: #4A2C56;
+    font-family: verdana;
+    text-decoration: none;
+}
+
+.orderCart:hover {
+    color: white;
+    background-color: #593567;
+    transition : all 0.4s ease-out;
+}
+
+.button {
+    padding-bottom: 15px;
+    padding-top: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    color: white;
+    background-color: #4A2C56;
+    font-family: verdana;
+    text-decoration: none;
+    border: none;
+}
+
+.button:hover {
+    color: white;
+    background-color: #593567;
+    transition : all 0.4s ease-out;
+}
 
 
 
@@ -306,6 +350,16 @@ td.imageShopping img{
     width: 100px;
     padding-top: 5px;
     padding-bottom: 5px;
+}
+
+td.trashCan img {
+    height: 30px;
+}
+
+td.inputQuantity input {
+    font-size: 15px;
+    text-align: center;
+    width: 35px;
 }
 
 

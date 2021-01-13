@@ -11,6 +11,10 @@ else {
     $login = false;
 }
 
+if(!isset($quantity)) {
+    $quantity = 1;
+}
+
 $index = $_GET['id'];
 
 $query = "SELECT * FROM garen WHERE id = '$index'"
@@ -20,6 +24,10 @@ $result = mysqli_query($db, $query)
     or die('Error in query: '.$query);
 
 $product = mysqli_fetch_assoc($result);
+
+if (isset($_POST['submit'])) {
+    $quantity = $_POST['quantity'];
+}
 
 mysqli_close($db);
 ?>
@@ -73,14 +81,27 @@ mysqli_close($db);
 
         <section id="">
             <h2><?= $product['name']?></h2>
-            <ul>
-                <li>Beschrijving: <?= $product['description'] ?></li>
-                <li>Prijs: € <?= $product['price_now'] ?></li>
-                <li>Voorraad: <?= $product['stock'] ?></li>
-            </ul>
-            <div class="links">
-                <a class="orderDetails" href="cookie.php?id=<?= $product['id'] ?>">Bestel</a>
+            <div>
+                <p><?= $product['description'] ?></p>
             </div>
+            <div>
+                <p><strong>€ <?= $product['price_now'] ?></strong></p>
+            </div>
+            <div>
+                <p>Beschikbaarheid: <?= $product['stock'] ?></p>
+            </div>
+
+            <br>
+
+            <div class="orderCartAlign">
+                <form action="cookie.php?id=<?= $product['id'] ?>&quantity=<?= $quantity ?>">
+                    <input id="id" type="hidden" name="id" value="<?= $product['id'] ?>">
+                    <input id="quantity" type="number" name="quantity" value="<?= $quantity ?>"/>
+
+                    <input type="submit" name="submit" value="Bestel" class="button"/>
+                </form>
+            </div>
+            <br>
             <br>
             <a href="garen.php">Ga terug</a>
         </section>
