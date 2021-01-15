@@ -81,7 +81,9 @@ mysqli_close($db);
 </head>
 <body>
 <header>
-
+    <nav>
+        <div><a href="databaseProducts.php">Ga terug</a></div>
+    </nav>
 </header>
 
 <main>
@@ -141,13 +143,9 @@ mysqli_close($db);
         </div>
 
         <div class="data-submit">
-            <input type="submit" name="submit" value="Save"/>
+            <input type="submit" name="submit" value="Voeg product toe"/>
         </div>
     </form>
-    <br>
-    <div>
-        <a href="databaseProducts.php">Ga terug naar de lijst</a>
-    </div>
 </main>
 
 <footer>

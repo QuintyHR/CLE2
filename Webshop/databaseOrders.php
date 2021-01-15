@@ -13,9 +13,13 @@ if($admin != 1 || $login == false) {
     exit();
 }
 
-$query = "SELECT * FROM orders 
-            INNER JOIN users ON orders.user_id = id";
-$result = mysqli_query($db, $query);
+$query = "SELECT orders.*, users.firstname, users.surname FROM orders 
+            INNER JOIN users ON orders.user_id = users.id
+            ORDER BY orders.id DESC "
+    or die('Error '.mysqli_error($db).' with query '.$query);
+
+$result = mysqli_query($db, $query)
+    or die('Error in query: '.$query);
 
 $orders = [];
 while($row = mysqli_fetch_assoc($result)) {
@@ -55,18 +59,22 @@ mysqli_close($db);
             <th>Totaalprijs</th>
             <th>Datum</th>
             <th></th>
+            <th></th>
+            <th></th>
         </tr>
         </thead>
 
         <tbody>
         <?php foreach ($orders as $order) { ?>
             <tr>
-                <td><?= $order['id'] ?></td>
-                <td><?= $order['user_id'] ?></td>
-                <td><?= $order['user_firstname'] ?> <?= $order['surname'] ?></td>
+                <td>#<?= $order['id'] ?></td>
+                <td>#<?= $order['user_id'] ?></td>
+                <td><?= $order['firstname'] ?> <?= $order['surname'] ?></td>
                 <td>€ <?= $order['subTotal'] ?></td>
                 <td><?= $order['date'] ?></td>
-                <td>Informatie</td>
+                <td><a href="orderInfo.php?id=<?= $order['id'] ?>&user=<?= $order['user_id'] ?>">Informatie</a></td>
+                <td><a href="orderEdit.php?id=<?= $order['id'] ?>">Bewerk</a></td>
+                <td><a href="orderDelete.php?id=<?= $order['id'] ?>">Verwijder</a></td>
             </tr>
         <?php } ?>
         </tbody>

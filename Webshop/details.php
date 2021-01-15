@@ -107,6 +107,9 @@ mysqli_close($db);
         </section>
     </section>
 </main>
-</body>
 
+<footer>
+
+</footer>
+</body>
 </html>

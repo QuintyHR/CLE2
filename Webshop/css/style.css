@@ -298,10 +298,20 @@ input[type=submit] {
     width: auto;
 }
 
+table {
+    width: 100%;
+}
 
+
+th {
+    color: white;
+    font-family: Verdana;
+    background-color: #4A2C56;
+}
 
 td {
     padding: 0 10px;
+    font-family: Verdana;
 }
 
 td.image img {
@@ -325,6 +335,7 @@ tbody tr:nth-child(odd) {
 
 
 table.shoppingList {
+    font-family: Verdana;
     border-collapse: collapse;
     width: 95%;
 }
@@ -451,4 +462,20 @@ td.inputQuantity input {
 
 .orderList {
     grid-column-start: 2;
+}
+
+
+
+#displayOrderDetails {
+    display: grid;
+    grid-template-columns: 60% 40%;
+}
+
+.orderProducts {
+    grid-column-start: 1;
+}
+
+.orderInformation {
+    grid-column-start: 2;
+    padding-left: 20px;
 }
