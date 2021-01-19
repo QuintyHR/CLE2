@@ -106,15 +106,19 @@ $_SESSION['login'] = $login;
                 <span class="errors"><?= isset($errors['email']) ? $errors['email'] : '' ?></span>
                 <div class="data-field">
                     <label for="email">E-mailadres</label>
+                    <br>
                     <input id="email" type="text" name="email"
                            value="<?= htmlentities(isset($email) ? $email : '') ?>"/>
                 </div>
+                <br>
                 <span class="errors"><?= isset($errors['password']) ? $errors['password'] : '' ?></span>
                 <div class="data-field">
                     <label for="password">Wachtwoord</label>
+                    <br>
                     <input id="password" type="password" name="password"/>
                 </div>
 
+                <br>
                 <br>
 
                 <div class="data-submit">
@@ -125,21 +129,88 @@ $_SESSION['login'] = $login;
 
         <div class="new-account">
             <h4>Een nieuw account aanmaken</h4>
-
             <p>Nog geen account bij Van Huissteden? Maak dan hier en gemakklijk een nieuw account aan om sneller te bestellen en vorige bestellingen terug te vinden.</p>
-
             <a href="new-account.php">Maak nieuw account aan</a>
         </div>
     </section>
     <?php } ?>
 
     <br>
-
+    <br>
     <a href="index.php">Ga terug</a>
+    <br>
+    <br>
 </main>
 
 <footer>
-    
+    <section class="advantages">
+        <br>
+        <h1>Onze voordelen</h1>
+        <br>
+        <section class="advantagesContainer">
+            <section class="shipping">
+                <img src="icons/shipping.png"/>
+                <h2>Geen verzendkosten</h2>
+                <p>Bij bestellingen boven de € 50,-</p>
+                <p>Onder de € 50,- vanaf € 1,95</p>
+            </section>
+
+            <section class="retour">
+                <img src="icons/retour.png"/>
+                <h2>Gratis retour</h2>
+                <p>Tot 14 dagen gratis retourneren of annuleren</p>
+            </section>
+
+            <section class="ownStock">
+                <img src="icons/ownStock.png"/>
+                <h2>Uit eigen voorraad</h2>
+                <p>Snel geleverd uit eigen voorraad</p>
+            </section>
+
+            <section class="payment">
+                <img src="icons/payment.png"/>
+                <h2>Veilig betalen</h2>
+                <p>Met iDeal</p>
+            </section>
+        </section>
+        <br>
+    </section>
+
+    <section class="footer">
+        <br>
+        <section class="schedule">
+            <h2 class="schedule">Openingstijden</h2>
+            <div></div>
+            <p class="schedule">Ma: 13.00 - 18.00 uur</p>
+            <p class="schedule">Di t/m vr: 09.00 - 18.00 uur</p>
+            <p class="schedule">Za: 09.00 - 17.00 uur</p>
+            <br>
+            <p class="schedule">Zon- en feestdagen gesloten!</p>
+            <p class="schedule">Gratis parkeren voor de deur.</p>
+        </section>
+
+        <section class="contact">
+            <h2 class="contact">Contactgegevens</h2>
+            <div></div>
+            <p class="contact">van Huissteden</p>
+            <p class="contact">Nedereindseweg 37</p>
+            <p class="contact">3438 AA Nieuwegein</p>
+            <p class="contact">tel.: 030 - 60 44 998</p>
+            <p class="contact">info@huissteden.com</p>
+        </section>
+
+        <section class="newsletter">
+            <h2 class="newsletter">Nieuwsbrief</h2>
+            <div></div>
+            <p class="newsletter">Wees als eerste op de hoogte van nieuws en aanbiedingen!</p>
+        </section>
+        <br>
+    </section>
+
+    <section class="copyright">
+        <p class="copyright">© Huissteden 2021. Alle rechten voorbehouden.</p>
+        <br>
+    </section>
 </footer>
 </body>
 </html>

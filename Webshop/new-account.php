@@ -114,81 +114,171 @@ mysqli_close($db);
     <?php if(isset($success)) { ?>
         <p>Uw account is aangemaakt! Ga terug om in te kunnen loggen.</p>
     <?php } else { ?>
-    <form action= "" method="post">
-        <h4>Persoonsgegevens</h4>
-        <span class="errors"><?= isset($errors['firstname']) ? $errors['firstname'] : '' ?></span>
-        <div class="data-field">
-            <label for="firstname">Voornaam</label>
-            <input id="firstname" type="text" name="firstname"
-                   value="<?= htmlentities(isset($firstname) ? $firstname : '') ?>"/>
-        </div>
-        <span class="errors"><?= isset($errors['surname']) ? $errors['surname'] : '' ?></span>
-        <div class="data-field">
-            <label for="surname">Achternaam</label>
-            <input id="surname" type="text" name="surname"
-                   value="<?= htmlentities(isset($surname) ? $surname : '') ?>"/>
-        </div>
-        <span class="errors"><?= isset($errors['street']) ? $errors['street'] : '' ?></span>
-        <div class="data-field">
-            <label for="street">Straat</label>
-            <input id="street" type="text" name="street"
-                   value="<?= htmlentities(isset($street) ? $street : '') ?>"/>
-        </div>
-        <span class="errors"><?= isset($errors['housenumber']) ? $errors['housenumber'] : '' ?></span>
-        <div class="data-field">
-            <label for="housenumber">Huisnummer</label>
-            <input id="housenumber" type="text" name="housenumber"
-                   value="<?= htmlentities(isset($housenumber) ? $housenumber : '') ?>"/>
-        </div>
-        <span class="errors"><?= isset($errors['city']) ? $errors['city'] : '' ?></span>
-        <div class="data-field">
-            <label for="city">Woonplaats</label>
-            <input id="city" type="text" name="city"
-                   value="<?= htmlentities(isset($city) ? $city : '') ?>"/>
-        </div>
-        <span class="errors"><?= isset($errors['postalcode']) ? $errors['postalcode'] : '' ?></span>
-        <div class="data-field">
-            <label for="postalcode">Postcode</label>
-            <input id="postalcode" type="text" name="postalcode"
-                   value="<?= htmlentities(isset($postalcode) ? $postalcode : '') ?>"/>
-        </div>
-        <span class="errors"><?= isset($errors['country']) ? $errors['country'] : '' ?></span>
-        <div class="data-field">
-            <label for="country">Land</label>
-            <input id="country" type="text" name="country"
-                   value="<?= htmlentities(isset($country) ? $country : '') ?>"/>
-        </div>
+    <section id="newAccount">
+        <form action= "" method="post">
+            <section class="data">
+                <h4>Persoonsgegevens</h4>
+                <span class="errors"><?= isset($errors['firstname']) ? $errors['firstname'] : '' ?></span>
+                <div class="data-field">
+                    <label for="firstname">Voornaam</label>
+                    <br>
+                    <input id="firstname" type="text" name="firstname"
+                           value="<?= htmlentities(isset($firstname) ? $firstname : '') ?>"/>
+                </div>
+                <br>
+                <span class="errors"><?= isset($errors['surname']) ? $errors['surname'] : '' ?></span>
+                <div class="data-field">
+                    <label for="surname">Achternaam</label>
+                    <br>
+                    <input id="surname" type="text" name="surname"
+                           value="<?= htmlentities(isset($surname) ? $surname : '') ?>"/>
+                </div>
+                <br>
+                <span class="errors"><?= isset($errors['street']) ? $errors['street'] : '' ?></span>
+                <div class="data-field">
+                    <label for="street">Straat</label>
+                    <br>
+                    <input id="street" type="text" name="street"
+                           value="<?= htmlentities(isset($street) ? $street : '') ?>"/>
+                </div>
+                <br>
+                <span class="errors"><?= isset($errors['housenumber']) ? $errors['housenumber'] : '' ?></span>
+                <div class="data-field">
+                    <label for="housenumber">Huisnummer</label>
+                    <br>
+                    <input id="housenumber" type="text" name="housenumber"
+                           value="<?= htmlentities(isset($housenumber) ? $housenumber : '') ?>"/>
+                </div>
+                <br>
+                <span class="errors"><?= isset($errors['city']) ? $errors['city'] : '' ?></span>
+                <div class="data-field">
+                    <label for="city">Woonplaats</label>
+                    <br>
+                    <input id="city" type="text" name="city"
+                           value="<?= htmlentities(isset($city) ? $city : '') ?>"/>
+                </div>
+                <br>
+                <span class="errors"><?= isset($errors['postalcode']) ? $errors['postalcode'] : '' ?></span>
+                <div class="data-field">
+                    <label for="postalcode">Postcode</label>
+                    <br>
+                    <input id="postalcode" type="text" name="postalcode"
+                           value="<?= htmlentities(isset($postalcode) ? $postalcode : '') ?>"/>
+                </div>
+                <br>
+                <span class="errors"><?= isset($errors['country']) ? $errors['country'] : '' ?></span>
+                <div class="data-field">
+                    <label for="country">Land</label>
+                    <br>
+                    <input id="country" type="text" name="country"
+                           value="<?= htmlentities(isset($country) ? $country : '') ?>"/>
+                </div>
+                <br>
+                <br>
+            </section>
 
-        <br>
+            <section class="signData">
+                <h4>Inloggegevens</h4>
+                <span class="errors"><?= isset($errors['email']) ? $errors['email'] : '' ?></span>
+                <div class="data-field">
+                    <label for="email">E-mailadres</label>
+                    <br>
+                    <input id="email" type="text" name="email"
+                           value="<?= htmlentities(isset($email) ? $email : '') ?>"/>
+                </div>
+                <br>
+                <span class="errors"><?= isset($errors['password']) ? $errors['password'] : '' ?></span>
+                <div class="data-field">
+                    <label for="password">Wachtwoord</label>
+                    <br>
+                    <input id="password" type="password" name="password" minlength="8">
+                </div>
+                <br>
+                <br>
 
-        <h4>Inloggegevens</h4>
-        <span class="errors"><?= isset($errors['email']) ? $errors['email'] : '' ?></span>
-        <div class="data-field">
-            <label for="email">E-mailadres</label>
-            <input id="email" type="text" name="email"
-                   value="<?= htmlentities(isset($email) ? $email : '') ?>"/>
-        </div>
-        <span class="errors"><?= isset($errors['password']) ? $errors['password'] : '' ?></span>
-        <div class="data-field">
-            <label for="password">Wachtwoord</label>
-            <input id="password" type="password" name="password" minlength="8">
-        </div>
-
-        <br>
-
-        <div class="data-submit">
-            <input type="submit" name="submit" value="Maak account"/>
-        </div>
-    </form>
+                <div class="data-submit">
+                    <input type="submit" name="submit" value="Maak account"/>
+                </div>
+            </section>
+        </form>
+    </section>
     <?php } ?>
 
     <br>
-
     <a href="login.php">Ga terug</a>
+    <br>
+    <br>
 </main>
 
 <footer>
+    <section class="advantages">
+        <br>
+        <h1>Onze voordelen</h1>
+        <br>
+        <section class="advantagesContainer">
+            <section class="shipping">
+                <img src="icons/shipping.png"/>
+                <h2>Geen verzendkosten</h2>
+                <p>Bij bestellingen boven de € 50,-</p>
+                <p>Onder de € 50,- vanaf € 1,95</p>
+            </section>
 
+            <section class="retour">
+                <img src="icons/retour.png"/>
+                <h2>Gratis retour</h2>
+                <p>Tot 14 dagen gratis retourneren of annuleren</p>
+            </section>
+
+            <section class="ownStock">
+                <img src="icons/ownStock.png"/>
+                <h2>Uit eigen voorraad</h2>
+                <p>Snel geleverd uit eigen voorraad</p>
+            </section>
+
+            <section class="payment">
+                <img src="icons/payment.png"/>
+                <h2>Veilig betalen</h2>
+                <p>Met iDeal</p>
+            </section>
+        </section>
+        <br>
+    </section>
+
+    <section class="footer">
+        <br>
+        <section class="schedule">
+            <h2 class="schedule">Openingstijden</h2>
+            <div></div>
+            <p class="schedule">Ma: 13.00 - 18.00 uur</p>
+            <p class="schedule">Di t/m vr: 09.00 - 18.00 uur</p>
+            <p class="schedule">Za: 09.00 - 17.00 uur</p>
+            <br>
+            <p class="schedule">Zon- en feestdagen gesloten!</p>
+            <p class="schedule">Gratis parkeren voor de deur.</p>
+        </section>
+
+        <section class="contact">
+            <h2 class="contact">Contactgegevens</h2>
+            <div></div>
+            <p class="contact">van Huissteden</p>
+            <p class="contact">Nedereindseweg 37</p>
+            <p class="contact">3438 AA Nieuwegein</p>
+            <p class="contact">tel.: 030 - 60 44 998</p>
+            <p class="contact">info@huissteden.com</p>
+        </section>
+
+        <section class="newsletter">
+            <h2 class="newsletter">Nieuwsbrief</h2>
+            <div></div>
+            <p class="newsletter">Wees als eerste op de hoogte van nieuws en aanbiedingen!</p>
+        </section>
+        <br>
+    </section>
+
+    <section class="copyright">
+        <p class="copyright">© Huissteden 2021. Alle rechten voorbehouden.</p>
+        <br>
+    </section>
 </footer>
 </body>
 </html>

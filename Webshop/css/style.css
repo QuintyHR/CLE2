@@ -291,11 +291,32 @@ label {
 
 
 input {
-    width: 200px;
+    width: 250px;
 }
 
 input[type=submit] {
     width: auto;
+    padding: 10px;
+    color: white;
+    font-family: Verdana;
+    font-size: 15px;
+    background-color: #4A2C56;
+    border: none;
+    cursor: pointer;
+}
+
+input[type=submit]:hover {
+    background-color: #4A2C56;
+    background-color: #593567;
+    transition : all 0.4s ease-out;
+}
+
+label {
+    width: auto;
+    color: #052333;
+    font-family: Verdana;
+    font-size: 15px;
+    padding: 10px;
 }
 
 table {
@@ -478,4 +499,93 @@ td.inputQuantity input {
 .orderInformation {
     grid-column-start: 2;
     padding-left: 20px;
+}
+
+
+
+footer {
+    margin : 0 auto;
+    background-color: #4A2C56;
+}
+
+.advantages {
+    background-color: #F1F6FA;
+}
+
+.advantagesContainer {
+    display: grid;
+    width: 1200px;
+    margin : 0 auto;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    text-align: center;
+}
+
+.shipping {
+    grid-column-start: 1;
+    padding: 10px;
+}
+
+.retour {
+    grid-column-start: 2;
+    padding: 10px;
+}
+
+.ownStock {
+    grid-column-start: 3;
+    padding: 10px;
+}
+
+.payment {
+    grid-column-start: 4;
+    padding: 10px;
+}
+
+
+
+.footer {
+    display: grid;
+    width: 1200px;
+    margin : 0 auto;
+    grid-template-columns: 1fr 1fr 1fr;
+    background-color: #4A2C56;
+}
+
+.schedule {
+    grid-column-start: 1;
+    color: white;
+    text-align: left;
+}
+
+.contact {
+    grid-column-start: 2;
+    color: white;
+    text-align: left;
+}
+
+.newsletter {
+    grid-column-start: 3;
+    color: white;
+    text-align: left;
+}
+
+
+.copyright {
+    color: white;
+    text-align: center;
+    background-color: #4A2C56;
+}
+
+
+
+#newAccount {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.data {
+    grid-column-start: 1;
+}
+
+.signData {
+    grid-column-start: 2;
 }
