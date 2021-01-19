@@ -34,40 +34,9 @@ if(isset($_COOKIE['shoppingCart'])) {
         $quantity[] = $itemQuantity;
         $start += 1;
     }
-}
 
-//if (isset($_POST['submit'])) {
-//    //Postback with the data showed to the user, first retrieve data from 'Super global'
-//    $ = ;
-//
-//    //Secure the data above
-//    $ = [
-//        '' => $,
-//        '' => $
-//    ];
-//
-//    $queryOrder = "INSERT INTO orders (user_id, date)
-//                        VALUES('$order_id', ''$user_id', '$date')";
-//    $resultOrder = mysqli_query($db, $queryOrder);
-//
-//    if ($resultOrder) {
-//        $successOrder = "De bestelling is verwerkt!";
-//    } else {
-//        $errors['db'] = mysqli_error($db);
-//    }
-//
-//
-//
-//    $queryProduct = "INSERT INTO order_details (order_id, product_id, price_quantity, quantity, price_total)
-//                        VALUES('$order_id', '$product_id', '$price_quantity', '$quantity', '$price_total')";
-//    $resultProduct = mysqli_query($db, $queryProduct);
-//
-//    if ($resultProduct) {
-//        $successProduct = "De producten zijn opgeslagen!";
-//    } else {
-//        $errors['db'] = mysqli_error($db);
-//    }
-//}
+    $shoppingCartItems = serialize($_COOKIE['shoppingCart']);
+}
 
 $priceTotal = 0;
 $shippingCost = 4.95;
@@ -171,9 +140,12 @@ mysqli_close($db);
             ?>
             <p>Totaal: € <?= $priceInc?></p>
             <br>
-            <div class="orderCartAlign">
-                <input type="submit" name="submit" value="Plaats bestelling" class="button"/>
-            </div>
+            <form action="order.php">
+                <input type="hidden" name="priceInc" value="<?= $priceInc?>">
+                <div class="orderCartAlign">
+                    <input type="submit" name="submit" value="Plaats bestelling" class="button"/>
+                </div>
+            </form>
         </div>
     </section>
 

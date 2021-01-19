@@ -26,6 +26,9 @@ if (isset($_POST['submit'])) {
         if (password_verify($password, $user['password'])) {
             $login = true;
             $_SESSION['userId'] = $user['id'];
+            $_SESSION['email'] = $user['email'];
+            $_SESSION['firstname'] = $user['firstname'];
+            $_SESSION['surname'] = $user['surname'];
         }
         else {
             //error onjuiste logingegevens
