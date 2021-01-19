@@ -60,7 +60,6 @@ mysqli_close($db);
             <th>Datum</th>
             <th></th>
             <th></th>
-            <th></th>
         </tr>
         </thead>
 
@@ -73,7 +72,6 @@ mysqli_close($db);
                 <td>€ <?= $order['subTotal'] ?></td>
                 <td><?= $order['date'] ?></td>
                 <td><a href="orderInfo.php?id=<?= $order['id'] ?>&user=<?= $order['user_id'] ?>">Informatie</a></td>
-                <td><a href="orderEdit.php?id=<?= $order['id'] ?>">Bewerk</a></td>
                 <td><a href="orderDelete.php?id=<?= $order['id'] ?>">Verwijder</a></td>
             </tr>
         <?php } ?>
