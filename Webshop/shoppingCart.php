@@ -147,6 +147,8 @@ mysqli_close($db);
                 </div>
             </form>
         </div>
+        <br>
+        <br>
     </section>
 
     <?php } else { ?>

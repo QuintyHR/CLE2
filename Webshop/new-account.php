@@ -114,94 +114,94 @@ mysqli_close($db);
     <?php if(isset($success)) { ?>
         <p>Uw account is aangemaakt! Ga terug om in te kunnen loggen.</p>
     <?php } else { ?>
-    <section id="newAccount">
         <form action= "" method="post">
-            <section class="data">
-                <h4>Persoonsgegevens</h4>
-                <span class="errors"><?= isset($errors['firstname']) ? $errors['firstname'] : '' ?></span>
-                <div class="data-field">
-                    <label for="firstname">Voornaam</label>
+            <section id="newAccount">
+                <section class="data">
+                    <h4>Persoonsgegevens</h4>
+                    <span class="errors"><?= isset($errors['firstname']) ? $errors['firstname'] : '' ?></span>
+                    <div class="data-field">
+                        <label for="firstname">Voornaam</label>
+                        <br>
+                        <input id="firstname" type="text" name="firstname"
+                               value="<?= htmlentities(isset($firstname) ? $firstname : '') ?>"/>
+                    </div>
                     <br>
-                    <input id="firstname" type="text" name="firstname"
-                           value="<?= htmlentities(isset($firstname) ? $firstname : '') ?>"/>
-                </div>
-                <br>
-                <span class="errors"><?= isset($errors['surname']) ? $errors['surname'] : '' ?></span>
-                <div class="data-field">
-                    <label for="surname">Achternaam</label>
+                    <span class="errors"><?= isset($errors['surname']) ? $errors['surname'] : '' ?></span>
+                    <div class="data-field">
+                        <label for="surname">Achternaam</label>
+                        <br>
+                        <input id="surname" type="text" name="surname"
+                               value="<?= htmlentities(isset($surname) ? $surname : '') ?>"/>
+                    </div>
                     <br>
-                    <input id="surname" type="text" name="surname"
-                           value="<?= htmlentities(isset($surname) ? $surname : '') ?>"/>
-                </div>
-                <br>
-                <span class="errors"><?= isset($errors['street']) ? $errors['street'] : '' ?></span>
-                <div class="data-field">
-                    <label for="street">Straat</label>
+                    <span class="errors"><?= isset($errors['street']) ? $errors['street'] : '' ?></span>
+                    <div class="data-field">
+                        <label for="street">Straat</label>
+                        <br>
+                        <input id="street" type="text" name="street"
+                               value="<?= htmlentities(isset($street) ? $street : '') ?>"/>
+                    </div>
                     <br>
-                    <input id="street" type="text" name="street"
-                           value="<?= htmlentities(isset($street) ? $street : '') ?>"/>
-                </div>
-                <br>
-                <span class="errors"><?= isset($errors['housenumber']) ? $errors['housenumber'] : '' ?></span>
-                <div class="data-field">
-                    <label for="housenumber">Huisnummer</label>
+                    <span class="errors"><?= isset($errors['housenumber']) ? $errors['housenumber'] : '' ?></span>
+                    <div class="data-field">
+                        <label for="housenumber">Huisnummer</label>
+                        <br>
+                        <input id="housenumber" type="text" name="housenumber"
+                               value="<?= htmlentities(isset($housenumber) ? $housenumber : '') ?>"/>
+                    </div>
                     <br>
-                    <input id="housenumber" type="text" name="housenumber"
-                           value="<?= htmlentities(isset($housenumber) ? $housenumber : '') ?>"/>
-                </div>
-                <br>
-                <span class="errors"><?= isset($errors['city']) ? $errors['city'] : '' ?></span>
-                <div class="data-field">
-                    <label for="city">Woonplaats</label>
+                    <span class="errors"><?= isset($errors['city']) ? $errors['city'] : '' ?></span>
+                    <div class="data-field">
+                        <label for="city">Woonplaats</label>
+                        <br>
+                        <input id="city" type="text" name="city"
+                               value="<?= htmlentities(isset($city) ? $city : '') ?>"/>
+                    </div>
                     <br>
-                    <input id="city" type="text" name="city"
-                           value="<?= htmlentities(isset($city) ? $city : '') ?>"/>
-                </div>
-                <br>
-                <span class="errors"><?= isset($errors['postalcode']) ? $errors['postalcode'] : '' ?></span>
-                <div class="data-field">
-                    <label for="postalcode">Postcode</label>
+                    <span class="errors"><?= isset($errors['postalcode']) ? $errors['postalcode'] : '' ?></span>
+                    <div class="data-field">
+                        <label for="postalcode">Postcode</label>
+                        <br>
+                        <input id="postalcode" type="text" name="postalcode"
+                               value="<?= htmlentities(isset($postalcode) ? $postalcode : '') ?>"/>
+                    </div>
                     <br>
-                    <input id="postalcode" type="text" name="postalcode"
-                           value="<?= htmlentities(isset($postalcode) ? $postalcode : '') ?>"/>
-                </div>
-                <br>
-                <span class="errors"><?= isset($errors['country']) ? $errors['country'] : '' ?></span>
-                <div class="data-field">
-                    <label for="country">Land</label>
+                    <span class="errors"><?= isset($errors['country']) ? $errors['country'] : '' ?></span>
+                    <div class="data-field">
+                        <label for="country">Land</label>
+                        <br>
+                        <input id="country" type="text" name="country"
+                               value="<?= htmlentities(isset($country) ? $country : '') ?>"/>
+                    </div>
                     <br>
-                    <input id="country" type="text" name="country"
-                           value="<?= htmlentities(isset($country) ? $country : '') ?>"/>
-                </div>
-                <br>
-                <br>
-            </section>
+                    <br>
+                </section>
 
-            <section class="signData">
-                <h4>Inloggegevens</h4>
-                <span class="errors"><?= isset($errors['email']) ? $errors['email'] : '' ?></span>
-                <div class="data-field">
-                    <label for="email">E-mailadres</label>
+                <section class="signData">
+                    <h4>Inloggegevens</h4>
+                    <span class="errors"><?= isset($errors['email']) ? $errors['email'] : '' ?></span>
+                    <div class="data-field">
+                        <label for="email">E-mailadres</label>
+                        <br>
+                        <input id="email" type="text" name="email"
+                               value="<?= htmlentities(isset($email) ? $email : '') ?>"/>
+                    </div>
                     <br>
-                    <input id="email" type="text" name="email"
-                           value="<?= htmlentities(isset($email) ? $email : '') ?>"/>
-                </div>
-                <br>
-                <span class="errors"><?= isset($errors['password']) ? $errors['password'] : '' ?></span>
-                <div class="data-field">
-                    <label for="password">Wachtwoord</label>
+                    <span class="errors"><?= isset($errors['password']) ? $errors['password'] : '' ?></span>
+                    <div class="data-field">
+                        <label for="password">Wachtwoord</label>
+                        <br>
+                        <input id="password" type="password" name="password" minlength="8">
+                    </div>
                     <br>
-                    <input id="password" type="password" name="password" minlength="8">
-                </div>
-                <br>
-                <br>
+                    <br>
 
-                <div class="data-submit">
-                    <input type="submit" name="submit" value="Maak account"/>
-                </div>
+                    <div class="data-submit">
+                        <input type="submit" name="submit" value="Maak account"/>
+                    </div>
+                </section>
             </section>
         </form>
-    </section>
     <?php } ?>
 
     <br>

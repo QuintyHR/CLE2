@@ -510,6 +510,7 @@ footer {
 
 .advantages {
     background-color: #F1F6FA;
+    margin: 0 auto;
 }
 
 .advantagesContainer {
@@ -545,7 +546,7 @@ footer {
 .footer {
     display: grid;
     width: 1200px;
-    margin : 0 auto;
+    margin: 0 auto;
     grid-template-columns: 1fr 1fr 1fr;
     background-color: #4A2C56;
 }

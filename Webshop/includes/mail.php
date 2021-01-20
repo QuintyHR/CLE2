@@ -31,8 +31,8 @@ try {
 
     $mail->isHTML(true);
     $mail->Subject = 'Bedankt voor uw bestelling!';
-    $mail->Body = 'Dit is een bericht met <strong>HTML</strong>';
-    $mail->AltBody = 'Dit is een bericht zonder HTML';
+    $mail->Body = 'Bedankt voor uw bestelling bij van Huissteden. <br> Uw bestelling zal zo spoedig mogelijk verwerkt worden.';
+    $mail->AltBody = 'Bedankt voor uw bestelling bij van Huissteden. Uw bestelling zal zo spoedig mogelijk verwerkt worden.';
 
     $mail->send();
 } catch (Exception $exception) {
