@@ -15,7 +15,7 @@ if($admin != 1 || $login == false) {
 //Check if Post isset, else do nothing
 if (isset($_POST['submit'])) {
     //Postback with the data showed to the user, first retrieve data from 'Super global'
-    $picture_name = mysqli_escape_string($db, $_POST['picture_name']);
+//    $picture_name = mysqli_escape_string($db, $_POST['picture_name']);
     $name = mysqli_escape_string($db, $_POST['name']);
     $price_from = mysqli_escape_string($db, $_POST['price_from']);
     $price_now = mysqli_escape_string($db, $_POST['price_now']);
@@ -28,22 +28,19 @@ if (isset($_POST['submit'])) {
         'price_from' => $price_from,
         'price_now' => $price_now,
         'description' => $description,
-        'picture_name' => $picture_name,
+//        'picture_name' => $picture_name,
         'stock' => $stock
     ];
 
     //Check if data is valid & generate error if not so
     $errors = [];
-    if ($picture_name == "") {
-        $errors[] = 'Er moet nog een plaatje worden toegevoegd';
-    }
+//    if ($picture_name == "") {
+//        $errors[] = 'Er moet nog een plaatje worden toegevoegd';
+//    }
     if ($name == "") {
         $errors[] = 'Het veldnaam Product naam mag niet leeg zijn';
     }
-    if (!is_numeric($price_from)) {
-        $errors[] = 'Het veldnaam Prijs van mag niet leeg zijn';
-    }
-    if (!is_numeric($price_now)) {
+    if ($price_now == "") {
         $errors[] = 'Het veldnaam Prijs voor mag niet leeg zijn';
     }
     if ($description == "") {
@@ -54,15 +51,17 @@ if (isset($_POST['submit'])) {
     }
 
     if(empty($errors)) {
-        $picture_name = addImageFile($_FILES['picture_name']);
+//        $picture_name = addImageFile($_FILES['picture_name']);
 
         // Now this data can be stored in de database
-        $query = "INSERT INTO garen (image, name, price_from, price_now, description, stock)
-                    VALUES('$picture_name', '$name', '$price_from', '$price_now', '$description', '$stock')";
+        $query = "INSERT INTO garen (name, price_now, description, stock)
+                    VALUES('$name', '$price_now', '$description', '$stock')";
         $result = mysqli_query($db, $query);
 
         if ($result) {
             $success = "Hij is toegevoegd aan de DB";
+            header('Location: databaseProducts.php');
+            exit();
         }
         else {
             $errors['db'] = mysqli_error($db);
@@ -99,12 +98,6 @@ mysqli_close($db);
 
     <form action="<?= $_SERVER['REQUEST_URI']; ?>" method="post">
         <div class="data-field">
-            <label for="image">Plaatje</label>
-            <input id="image" type="file" name="image" value="<?= (isset($picture_name) ? $picture_name : ''); ?>"/>
-            <span class="errors"><?= (isset($errors['picture_name']) ? $errors['picture_name'] : '') ?></span>
-        </div>
-
-        <div class="data-field">
             <label for="name">Product naam</label>
             <input id="name" type="text" name="name" value="<?= (isset($name) ? $name : ''); ?>"/>
             <span class="errors"><?= (isset($errors['name']) ? $errors['name'] : '') ?></span>
@@ -112,13 +105,13 @@ mysqli_close($db);
 
         <div class="data-field">
             <label for="price_from">Prijs van</label>
-            <input id="price_from" type="number" name="price_from" value="<?= (isset($price_from) ? $price_from : ''); ?>"/>
+            <input id="price_from" type="text" name="price_from" value="<?= (isset($price_from) ? $price_from : ''); ?>"/>
             <span class="errors"><?= (isset($errors['price_from']) ? $errors['price_from'] : '') ?></span>
         </div>
 
         <div class="data-field">
             <label for="price_now">Prijs voor</label>
-            <input id="price_now" type="number" name="price_now" value="<?= (isset($price_now) ? $price_now : ''); ?>"/>
+            <input id="price_now" type="text" name="price_now" value="<?= (isset($price_now) ? $price_now : ''); ?>"/>
             <span class="errors"><?= (isset($errors['price_now']) ? $errors['price_now'] : '') ?></span>
         </div>
 

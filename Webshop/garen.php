@@ -71,6 +71,7 @@ mysqli_close($db);
 
     <section id="displayProducts">
         <div class="options">
+            <h2>Zoek opties</h2>
             <div>
                 <h3>Soorten</h3>
                 <ul>
@@ -118,7 +119,7 @@ mysqli_close($db);
                             <?= $product['price_from'] ?><strong>€ <?= $product['price_now'] ?></strong>
                         </div>
                         <div class="links">
-                            <a class="detail" href="details.php?id=<?= $product['id'] ?>">Meer</a>
+                            <a class="detail" href="details.php?id=<?= $product['id'] ?>">Meer info</a>
                             <a class="order" href="cookie.php?id=<?= $product['id'] ?>&quantity=1">Bestel</a>
                         </div>
                     </div>

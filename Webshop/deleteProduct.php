@@ -14,11 +14,14 @@ if($admin != 1 || $login == false) {
 
 $productId = $_GET['id'];
 
-$query = "DELETE FROM garen WHERE id = '$productId'";
+$query = "DELETE FROM garen WHERE id = $productId";
 $result = mysqli_query($db, $query);
 $album = mysqli_fetch_assoc($result);
 
 mysqli_close($db);
+
+header("Location: databaseProducts.php");
+exit();
 ?>
 
 <!doctype html>

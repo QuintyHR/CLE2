@@ -12,17 +12,20 @@ if($admin != 1 || $login == false) {
     exit();
 }
 
-$index = $_GET['id'];
+$orderId = $_GET['id'];
 
-$queryOrder = "DELETE FROM orders WHERE id = '$index'";
+$queryOrder = "DELETE FROM orders WHERE id = $orderId";
 $resultOrder = mysqli_query($db, $queryOrder);
 $order = mysqli_fetch_assoc($resultOrder);
 
-$queryDetails = "DELETE FROM order_details WHERE order_id = '$index'";
+$queryDetails = "DELETE FROM order_details WHERE order_id = $orderId";
 $resultDetails = mysqli_query($db, $queryDetails);
 $details = mysqli_fetch_assoc($resultDetails);
 
 mysqli_close($db);
+
+header("Location: databaseOrders.php");
+exit();
 ?>
 
 <!doctype html>
@@ -37,7 +40,7 @@ mysqli_close($db);
 <body>
 
 <h1>Het product is succesvol verwijderd</h1>
-<p><a href="databaseProducts.php">Terug naar de lijst</a></p>
+<p><a href="databaseOrders.php">Terug naar de lijst</a></p>
 
 </body>
 </html>

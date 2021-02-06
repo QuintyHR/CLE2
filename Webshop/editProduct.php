@@ -16,12 +16,12 @@ if($admin != 1 || $login == false) {
 //TODO: Handle POST data & store in DB
 if (isset($_POST['submit'])) {
     //Postback with the data showed to the user, first retrieve data from 'Super global'
-    $name = $_POST['name'];
-    $price_from = $_POST['price_from'];
-    $price_now = $_POST['price_now'];
-    $description = $_POST['description'];
-    $picture_name = $_POST['picture_name'];
-    $stock = $_POST['stock'];
+    $name = mysqli_escape_string($db, $_POST['name']);
+    $price_from = mysqli_escape_string($db, $_POST['price_from']);
+    $price_now = mysqli_escape_string($db, $_POST['price_now']);
+    $description = mysqli_escape_string($db, $_POST['description']);
+//    $picture_name = $_POST['picture_name'];
+    $stock = mysqli_escape_string($db, $_POST['stock']);
     $productId = $_POST['id'];
 
     //Secure the data above
@@ -30,23 +30,20 @@ if (isset($_POST['submit'])) {
         'price_from' => $price_from,
         'price_now' => $price_now,
         'description' => $description,
-        'picture_name' => $picture_name,
+//        'picture_name' => $picture_name,
         'stock' => $stock,
         'productId' => $productId
     ];
 
     //Check if data is valid & generate error if not so
     $errors = [];
-    if ($picture_name == "") {
-        $errors[] = 'Er moet nog een plaatje worden toegevoegd';
-    }
+//    if ($picture_name == "") {
+//        $errors[] = 'Er moet nog een plaatje worden toegevoegd';
+//    }
     if ($name == "") {
         $errors[] = 'Het veldnaam Product naam mag niet leeg zijn';
     }
-    if ($price_from) {
-        $errors[] = 'Het veldnaam Prijs van mag niet leeg zijn';
-    }
-    if ($price_now) {
+    if ($price_now == "") {
         $errors[] = 'Het veldnaam Prijs voor mag niet leeg zijn';
     }
     if ($description == "") {
@@ -57,23 +54,25 @@ if (isset($_POST['submit'])) {
     }
 
     if(empty($errors)) {
-        if($_FILES['picture_name']['error'] != 4) {
-            deleteImageFile($picture_name);
-            $picture_name = addImageFile($_FILES['picture_name']);
-        }
+//        if($_FILES['picture_name']['error'] != 4) {
+//            deleteImageFile($picture_name);
+//            $picture_name = addImageFile($_FILES['picture_name']);
+//        }
 
         // Now this data can be stored in de database
+        if($price_from == ""){
+            $price_from = null;
+        }
+
         $query = "UPDATE garen SET name = '$name', 
-                                    price_from = '$price_from',
                                     price_now = '$price_now',
                                     description = '$description',
-                                    picture_name = '$picture_name',
                                     stock = '$stock'
                     WHERE id = '" . mysqli_escape_string($db, $productId) . "'";
         $result = mysqli_query($db, $query);
 
         if ($result) {
-            header('Location: index.php');
+            header('Location: databaseProducts.php');
             exit();
         }
         else {
@@ -86,7 +85,7 @@ if (isset($_POST['submit'])) {
 
     $query = "SELECT * FROM garen WHERE id = $productId";
     $result = mysqli_query($db, $query)
-    or die('Error'. mysqli_error($db));
+        or die('Error'. mysqli_error($db));
     if ($result) {
         $product = mysqli_fetch_assoc($result);
     }
@@ -120,12 +119,6 @@ mysqli_close($db);
 
     <form action="<?= $_SERVER['REQUEST_URI']; ?>" method="post">
         <div class="data-field">
-            <label for="image">Plaatje</label>
-            <input id="image" type="file" name="image" value="<?= $product['picture_name']; ?>"/>
-            <span class="errors"><?= (isset($errors['picture_name']) ? $errors['picture_name'] : '') ?></span>
-        </div>
-
-        <div class="data-field">
             <label for="name">Product naam</label>
             <input id="name" type="text" name="name" value="<?= $product['name']; ?>"/>
             <span class="errors"><?= (isset($errors['name']) ? $errors['name'] : '') ?></span>
@@ -134,7 +127,6 @@ mysqli_close($db);
         <div class="data-field">
             <label for="price_from">Prijs van</label>
             <input id="price_from" type="text" name="price_from" value="<?= $product['price_from']; ?>"/>
-            <span class="errors"><?= (isset($errors['price_from']) ? $errors['price_from'] : '') ?></span>
         </div>
 
         <div class="data-field">
@@ -164,6 +156,7 @@ mysqli_close($db);
         </div>
 
         <div class="data-submit">
+            <input type="hidden" name="id" value="<?= $productId; ?>"/>
             <input type="submit" name="submit" value="Bewerk"/>
         </div>
     </form>
