@@ -29,6 +29,7 @@ if (isset($_POST['submit'])) {
             $_SESSION['email'] = $user['email'];
             $_SESSION['firstname'] = $user['firstname'];
             $_SESSION['surname'] = $user['surname'];
+            $_SESSION['admin'] = $user['admin'];
         }
         else {
             //error onjuiste logingegevens
@@ -88,13 +89,10 @@ $_SESSION['login'] = $login;
 <main>
     <h1>Inloggen</h1>
 
-    <?php if ($login && $user['admin'] == 1) {
-        $_SESSION['admin'] = $user['admin'];
-        $_SESSION['userId'] = $_POST[$user['userId']];
+    <?php if ($login && $_SESSION['admin'] == 1) {
         header("Location: admin.php");
         exit();
-    } elseif ($login && $user['admin'] == 0) {
-        $_SESSION['user_id'] = $user['id'];?>
+    } elseif ($login && $_SESSION['admin'] == 0) {?>
         <p>U bent succesvol ingelogd!</p>
     <?php } else {?>
     <section id="displayLogin">
